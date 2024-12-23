@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "012a72a6-bce8-421f-98b9-7ab11daf27c7",
+		"name": "departements",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39567947"
+	},
+	"item": [
+		{
+			"name": "list des departements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test pour les verifications\", function () {\r",
+							"    let jsondata = pm.response.json();\r",
+							"    const dept_no = pm.variables.get('dept_no');\r",
+							"    const dept_name = pm.variables.get('dept_name');\r",
+							"    let found=false;\r",
+							"    jsondata.forEach (\r",
+							"        departement => {\r",
+							"            if (departement.dept_no== dept_no && departement.dept_name == dept_name){\r",
+							"                found = true;\r",
+							"            }\r",
+							"        }\r",
+							"    )\r",
+							"    });\r",
+							"pm.test(\"Test de properietées\", function(){\r",
+							"     // jsondata.forEach(obj => {\r",
+							"    //     pm.expect(obj).to.have.property(\"dept_no\");\r",
+							"    //     pm.expect(obj).to.have.property(\"dept_name\");\r",
+							"    // });\r",
+							"    // console.log(pm.variables.get('dept_name'));\r",
+							"    // // console.log(pm.variables.get('dept_no').to.include('dept_no'));\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.1.95:8000/departments",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "8000",
+					"path": [
+						"departments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
